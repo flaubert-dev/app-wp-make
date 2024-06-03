@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  db:
+    image: 'mariadb:latest'
+    container_name: 'mariadb'
+    volumes:
+      - './db_data:/var/lib/mysql'
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+  
+  wordpress:
+    depends_on:
+      - db
+    image: 'wordpress:php8.2'
+    container_name: 'wordpress'
+    ports:
+      - '80:80'
+    environment:
+      WORDPRESS_DB_HOST: 'db:3306'
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: test
+      WORDPRESS_DB_NAME: test
+      WORDPRESS_DEBUG: 'true'
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FS_METHOD', 'direct');
+    volumes:
+      - './public/:/var/www/html'
+      - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
+  
+  wpcli:
+    depends_on:
+      - db
+      - wordpress
+    image: 'wordpress:cli'
+    container_name: 'wpcli'
+    entrypoint: wp
+    environment:
+      WORDPRESS_DB_HOST: 'db:3306'
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: test
+      WORDPRESS_DB_NAME: test
+      WORDPRESS_DEBUG: 'true'
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FS_METHOD', 'direct');
+    volumes:
+      - './public/:/var/www/html'
+      - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
+  
+  phpmyadmin:
+    depends_on:
+      - db
+    image: 'phpmyadmin:latest'
+    container_name: 'phpmyadmin'
+    ports:
+      - '10777:80'
+    environment:
+      PMA_HOST: 'db:3306'
+      PMA_USER: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
+      PMA_PASSWORD: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
+          
+volumes:
+  db_data: {}
