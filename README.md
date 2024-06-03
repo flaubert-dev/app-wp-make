@@ -54,7 +54,7 @@ Entrar no app
 cd ~/app-wp-make
 ```
 
-Ligar
+Instalar / Ligar
 
 ```zsh
 make ligar
