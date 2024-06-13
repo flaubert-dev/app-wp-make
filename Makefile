@@ -2,6 +2,10 @@ SHELL := /bin/bash
 
 instalacao-parte-1:
 	sudo apt update && sudo apt upgrade -y
+	sudo apt install composer -y
+	sudo apt install php-codesniffer -y
+	sudo apt install php-mbstring -y
+	sudo apt install php-curl -y
 	sudo apt install apparmor apparmor-utils -y
 	sudo apt install docker.io docker-buildx docker-compose -y
 	sudo usermod -aG docker $$USER
