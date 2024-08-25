@@ -1,191 +1,74 @@
-# App WP com Makefile
+# App WP Make
 
-Instale o WordPress na sua versão mais recente. WP pronto para desenvolvimento, treinamentos e estudos locais. Este repositório também tem o objetivo de ajudar na configuração inicial do Ubuntu 22.04 recém instalado usando o Makefile.
+Configure o Ubuntu e/ou Debian de forma simples e instale o WordPress para desenvolvimento, testes ou estudos locais. Este repositório também tem o objetivo de ajudar os Devs na configuração do Linux Ubuntu ou Debian recém instalado via WSL / WSL 2! \o/
 
-## Requisitos / Recomendação
+## Requisitos / Recomendações
 
-- Ubuntu 22.04 (Limpo, sem nenhuma instalação) 
-- Ou WSL com o Ubuntu 22.04 (Limpo, sem nenhuma instalação)
+- Ubuntu 22.04 ou Debian: Recém instalado ou formatado.
+- WSL com Ubuntu 22.04 ou WSL com Debian: Recém instalado ou formatado.
 
-## Instalação (comandos)
+## Siga este três passos
 
-```bash
-sudo apt update && sudo apt upgrade -y && sudo apt install make -y
-```
+1. Execute o comando abaixo para iniciar as configurações do Zsh e do Oh My Zsh. ATENÇÃO: Quando aparecer no terminal 'app-wp-make' (ao final das configurações) execute o comando: ```exit``` e só depois de executar ```exit``` é que deverá fechar o terminal!
 
 ```bash
-cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git
+sudo apt update && sudo apt upgrade -y && sudo apt install wget git make zip unzip -y && cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git && cd ~/app-wp-make && rm -fr .git && make zsh
 ```
 
-```bash
-cd ~/app-wp-make
-```
-
-```bash
-rm -fr .git
-```
-
-```bash
-make instalar
-```
-
-1. Após a conclusão de todas as instalações, use este comando para sair do Zsh:
-
-```bash
-exit
-```
-
-2. Só após sair do Zsh é que poderá fechar o terminal. 
-3. Logo depois, abra o terminal novamente.
-4. Na sequência, configure o Zsh executando os comandos logo abaixo:
-
-```bash
-cd ~/app-wp-make
-```
+2. Agora abra o terminal novamente para dar inicio as outras configurações essenciais para que o App funcione corretamente. Por favor, execute este comando:
 
 ```zsh
-make configurar
+cd ~/app-wp-make && chmod +x instalar.sh && ./instalar.sh
 ```
 
-5. Feche o terminal.
-6. Logo depois, abra o terminal novamente para que seja concluído as configurações.
-7. Reinicie o sistema. Se está usando o WSL com o Ubuntu 22.04 siga este [passo a passo](#wsl-reiniciar-o-sistema-powershell-como-admin).
-
-## App WP (comandos)
-
-Entrar no app
+3. Após todas as configurações você vai receber um aviso no terminal: "As configurações essenciais foram realizadas com sucesso! Por favor, agora feche o terminal!". Logo depois, abra o terminal novamente e execute o comando abaixo para instalar o App:
 
 ```zsh
-cd ~/app-wp-make
+cd ~/app-wp-make && make wp
 ```
 
-Instalar / Ligar
+## App WP Make Portas
+
+- Painel: http://localhost:8000/wp-admin/
+- Informar o usuário (username): dev
+- Informar a senha (password): 123
+- App: http://localhost:8000
+- phpMyAdmin: http://localhost:10777
+
+## App WP Make CLI
+
+Iniciar
 
 ```zsh
-make ligar
-```
-
-Desligar
-
-```zsh
-make desligar
+cd ~/app-wp-make && make iniciar
 ```
 
 Reiniciar
 
 ```zsh
-make reiniciar
+cd ~/app-wp-make && make reiniciar
 ```
 
-Permissões
+Desligar
 
 ```zsh
-make permitir
+cd ~/app-wp-make && make desligar
 ```
 
-## App WP (portas)
-
-Após ligar o app:
-
-- Acessar o App: http://localhost
-- Acessar o phpMyAdmin: http://localhost:10777
-
-## App WP (comandos opcionais)
-
-Entrar no app 
+Desinstalar (Atenção!! Este comando vai remover os containers, volumes, wp e o banco de dados também!)
 
 ```zsh
-cd ~/app-wp-make
+cd ~/app-wp-make && make desinstalar
 ```
 
-Visualizar chave SSH
+Visualizar a quantidade de espaço utilizado
 
 ```zsh
-make ver-ssh-key
+cd ~/app-wp-make && make espaco
 ```
 
-Instalar plugins Oh My Zsh
+Visualizar a chave SSH para Github
 
 ```zsh
-make instalar-plugins-zsh
-```
-
-Mostra o uso de espaço Docker (imagens, containers, volumes e cache) 
-
-```zsh
-make espaco
-```
-
-Remove os containers, redes, volumes e imagens associadas
-
-```zsh
-make desinstalar
-```
-
-## WSL: Windows Subsystem for Linux
-
-1. Instalar o WSL e/ou Ubuntu
-
-```zsh
-wsl --install -d Ubuntu-22.04
-```
-
-2. Atualizar o WSL
-
-```zsh
-wsl --update
-```
-
-3. Defina a versão padrão do WSL para a versão 2 
-
-```zsh
-wsl --set-default-version 2
-```
-
-## WSL: Desinstalar o Ubuntu 22.04 do WSL (PowerShell como ADMIN)
-
-1. Listar distros instaladas 
-
-```zsh
-wsl -l -v
-```
-
-2. Desligar a distribuição
-
-```zsh
-wsl --terminate Ubuntu-22.04
-```
-
-3. Desinstalar a distribuição 
-
-```zsh
-wsl --unregister Ubuntu-22.04
-```
-
-## WSL: Reiniciar o sistema (PowerShell como ADMIN)
-
-1. Desligar a distribuição
-
-```zsh
-wsl --terminate Ubuntu-22.04
-```
-
-2. Desligar o WSL
-
-```zsh
-wsl --shutdown
-```
-
-3. Ligar o WSL
-
-```zsh
-wsl
-```
-
-4. Feche o PowerShell / Abra novamente o terminal do Ubuntu 22.04
-
-5. Testar se o Docker está funcionando 
-
-```zsh
-docker ps
+cd ~/app-wp-make && make chave
 ```

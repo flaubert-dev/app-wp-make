@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   db:
@@ -14,13 +14,26 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: test
   
+  phpmyadmin:
+    depends_on:
+      - db
+    image: 'phpmyadmin:latest'
+    container_name: 'phpmyadmin'
+    ports:
+      - '10777:80'
+    environment:
+      PMA_HOST: 'db:3306'
+      PMA_USER: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
+      PMA_PASSWORD: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
+
   wordpress:
     depends_on:
       - db
-    image: 'wordpress:php8.2'
+      - phpmyadmin
+    image: 'wordpress:6.6-php8.1'
     container_name: 'wordpress'
     ports:
-      - '80:80'
+      - '8000:80'
     environment:
       WORDPRESS_DB_HOST: 'db:3306'
       WORDPRESS_DB_USER: test
@@ -32,10 +45,11 @@ services:
     volumes:
       - './public/:/var/www/html'
       - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
-  
+
   wpcli:
     depends_on:
       - db
+      - phpmyadmin
       - wordpress
     image: 'wordpress:cli'
     container_name: 'wpcli'
@@ -51,18 +65,6 @@ services:
     volumes:
       - './public/:/var/www/html'
       - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
-  
-  phpmyadmin:
-    depends_on:
-      - db
-    image: 'phpmyadmin:latest'
-    container_name: 'phpmyadmin'
-    ports:
-      - '10777:80'
-    environment:
-      PMA_HOST: 'db:3306'
-      PMA_USER: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
-      PMA_PASSWORD: test # root ou test (só mude após primeiro build se desejar criar novos bancos)
-          
+
 volumes:
   db_data: {}
