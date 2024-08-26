@@ -12,7 +12,7 @@ Configure o Ubuntu e/ou Debian de forma simples e instale o WordPress para desen
 1. Execute o comando abaixo para iniciar as configurações do Zsh e do Oh My Zsh. ATENÇÃO: Quando aparecer no terminal 'app-wp-make' (ao final das configurações) execute o comando: ```exit``` e só depois de executar ```exit``` é que deverá fechar o terminal!
 
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo apt install wget git make zip unzip -y && cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git && cd ~/app-wp-make && rm -fr .git && make zsh
+sudo apt update && sudo apt upgrade -y && sudo apt install wget git make zip unzip lsb-release -y && cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git && cd ~/app-wp-make && rm -fr .git && make zsh
 ```
 
 2. Agora abra o terminal novamente para dar inicio as outras configurações essenciais para que o App funcione corretamente. Por favor, execute este comando:

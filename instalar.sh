@@ -4,8 +4,7 @@ if [ -x "$(command -v lsb_release)" ]; then
   if lsb_release -i | grep -qi 'ubuntu'; then
     make ubuntu
   elif lsb_release -i | grep -qi 'debian'; then
-    # make debian
-    echo "Desculpe, neste momento esta distribuição ainda não é suportada."
+    make debian
   else
     echo "Desculpe, esta distribuição não é suportada."
   fi
