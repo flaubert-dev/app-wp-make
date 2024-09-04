@@ -21,7 +21,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install wget git make zip unz
 cd ~/app-wp-make && chmod +x instalar.sh && ./instalar.sh
 ```
 
-3. Após todas as configurações você vai receber um aviso no terminal: "As configurações essenciais foram realizadas com sucesso! Por favor, agora feche o terminal!". Logo depois, abra o terminal novamente e execute o comando abaixo para instalar o App:
+3. Após todas as configurações você vai receber um aviso no terminal: "As configurações essenciais foram realizadas com sucesso! Por favor, agora feche o terminal!". Logo depois, abra o terminal novamente e execute o comando abaixo para instalar o App. Caso o comando abaixo não funcione (ou dê algum erro), você vai precisar reiniciar a sua máquina para que o Docker comece a funcionar corretamente. Logo após reiniciar, abra o terminal para executar o comando abaixo e dar inicio a instalação:
 
 ```zsh
 cd ~/app-wp-make && make wp
