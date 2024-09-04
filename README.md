@@ -1,10 +1,9 @@
 # App WP Make
 
-Configure o Ubuntu e/ou Debian de forma simples e instale o WordPress para desenvolvimento, testes ou estudos locais. Este repositório também tem o objetivo de ajudar os Devs na configuração do Linux Ubuntu ou Debian recém instalado via WSL / WSL 2! \o/
+Configure o Ubuntu e/ou Debian de forma simples e instale o WordPress para desenvolvimento, testes ou estudos locais. Este repositório tem o objetivo de ajudar os Devs na configuração básica do Linux Ubuntu ou Debian recém instalado via WSL / WSL 2! \o/
 
 ## Requisitos / Recomendações
 
-- Ubuntu 22.04 ou Debian: Recém instalado ou formatado.
 - WSL com Ubuntu 22.04 ou WSL com Debian: Recém instalado ou formatado.
 
 ## Siga este três passos
@@ -27,13 +26,13 @@ cd ~/app-wp-make && chmod +x instalar.sh && ./instalar.sh
 cd ~/app-wp-make && make wp
 ```
 
-## App WP Make Portas
+## App WP Make Portas e Login
 
-- Painel: http://localhost:8000/wp-admin/
-- Informar o usuário (username): dev
-- Informar a senha (password): 123
 - App: http://localhost:8000
 - phpMyAdmin: http://localhost:10777
+- Painel admin: http://localhost:8000/wp-admin/
+- Informar o usuário (username): dev
+- Informar a senha (password): 123
 
 ## App WP Make CLI
 
