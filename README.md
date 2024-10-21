@@ -1,73 +1,111 @@
 # App WP Make
 
-Configure o Ubuntu e/ou Debian de forma simples e instale o WordPress para desenvolvimento, testes ou estudos locais. Este repositório tem o objetivo de ajudar os Devs na configuração básica do Linux Ubuntu ou Debian recém instalado via WSL / WSL 2! \o/
+O App WP Make fornece uma ajuda na criação de ambiente de desenvolvimento local para Devs especializados em WordPress. Por exemplo, se você tem o WSL 2 com o Ubuntu 22.04 poderá criar um ambiente de desenvolvimento em alguns minutos usando o App WP Make. Porém, este repositório ainda está em fase de testes! No momento (por enquanto), de fato um amplo / vasto conhecimento é realmente necessário para conseguir usar / usufruir / desfrutar do App WP Make com total segurança!
 
-## Requisitos / Recomendações
+## Passo 1. Instalar o App WP Make
 
-- WSL com Ubuntu 22.04 ou WSL com Debian: Recém instalado ou formatado.
-
-## Siga este três passos
-
-1. Execute o comando abaixo para iniciar as configurações do Zsh e do Oh My Zsh. ATENÇÃO: Quando aparecer no terminal 'app-wp-make' (ao final das configurações) execute o comando: ```exit``` e só depois de executar ```exit``` é que deverá fechar o terminal!
+- WSL 2: Ubuntu 22.04
 
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo apt install wget git make zip unzip lsb-release -y && cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git && cd ~/app-wp-make && rm -fr .git && make zsh
+sudo apt update && sudo apt install git make -y
 ```
 
-2. Agora abra o terminal novamente para dar inicio as outras configurações essenciais para que o App funcione corretamente. Por favor, execute este comando:
-
-```zsh
-cd ~/app-wp-make && chmod +x instalar.sh && ./instalar.sh
+```bash
+cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git
 ```
 
-3. Após todas as configurações você vai receber um aviso no terminal: "As configurações essenciais foram realizadas com sucesso! Por favor, agora feche o terminal!". Logo depois, abra o terminal novamente e execute o comando abaixo para instalar o App. Caso o comando abaixo não funcione (ou dê algum erro), você vai precisar reiniciar a sua máquina para que o Docker comece a funcionar corretamente. Logo após reiniciar, abra o terminal para executar o comando abaixo e dar inicio a instalação:
-
-```zsh
-cd ~/app-wp-make && make wp
+```bash
+cd ~/app-wp-make && rm -fr .git
 ```
 
-## App WP Make Portas e Login
+## Passo 2. Preparar o ambiente de desenvolvimento local
 
-- App: http://localhost:8000
-- phpMyAdmin: http://localhost:10777
-- Painel admin: http://localhost:8000/wp-admin/
-- Informar o usuário (username): dev
-- Informar a senha (password): 123
+- WSL 2: Ubuntu 22.04
 
-## App WP Make CLI
-
-Iniciar
-
-```zsh
-cd ~/app-wp-make && make iniciar
+```bash
+cd ~/app-wp-make && make windows-wsl-2-docker-ubuntu
 ```
 
-Reiniciar
-
-```zsh
-cd ~/app-wp-make && make reiniciar
+```bash
+cd ~/app-wp-make && make windows-wsl-2-ubuntu
 ```
 
-Desligar
-
-```zsh
-cd ~/app-wp-make && make desligar
+```bash
+cd ~/app-wp-make && make wp-prepare && source ~/.bashrc
 ```
 
-Desinstalar (Atenção!! Este comando vai remover os containers, volumes, wp e o banco de dados também!)
-
-```zsh
-cd ~/app-wp-make && make desinstalar
+```bash
+cd ~/app-wp-make && wp config set FS_METHOD direct
 ```
 
-Visualizar a quantidade de espaço utilizado
+## Passo 3. Instalar o WordPress
 
-```zsh
-cd ~/app-wp-make && make espaco
+```bash
+cd ~/app-wp-make && wp core install --url=localhost --title="Bem-vindo ao WordPress" --admin_user=dev --admin_password=123 --admin_email=dev@exemplo.com
 ```
 
-Visualizar a chave SSH para Github
+## Login (credenciais)
 
-```zsh
-cd ~/app-wp-make && make chave
+- Painel ADM: http://localhost/wp-admin/
+- Username: dev
+- Password: 123
+
+## Acessar o App
+
+- App: http://localhost/
+- phpMyAdmin: http://localhost:10777/
+- REST API: http://localhost/wp-json/wp/v2/posts/
+
+## Buildar, levantar, reiniciar, descer os containers
+
+```bash
+cd ~/app-wp-make && make build
+```
+
+```bash
+cd ~/app-wp-make && make up
+```
+
+```bash
+cd ~/app-wp-make && make restart
+```
+
+```bash
+cd ~/app-wp-make && make down
+```
+
+## Verificar a quantidade de espaço utilizado
+
+```bash
+cd ~/app-wp-make && make system-df
+```
+
+## Opcional
+
+### Instalar o Sage Starter Theme 10
+
+- WSL 2: Ubuntu 22.04
+
+```bash
+cd ~/app-wp-make && make nvm_node_yarn_wsl && source ~/.bashrc
+```
+
+```bash
+make wp_sage_install
+```
+
+```bash
+wp theme activate wp-sage && wp acorn acorn:init
+```
+
+```bash
+make wp_sage_build
+```
+
+### Instalar o WordPress Multisite
+
+- WSL 2: Ubuntu 22.04
+
+```bash
+cd ~/app-wp-make && wp core multisite-install --url=localhost --title="Bem-vindo ao WordPress" --admin_user="dev" --admin_password="123" --admin_email="dev@exemplo.com"
 ```

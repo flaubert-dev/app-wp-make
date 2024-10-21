@@ -1,5 +1,4 @@
 version: '3.3'
-
 services:
   db:
     image: 'mariadb:latest'
@@ -13,7 +12,7 @@ services:
       MYSQL_DATABASE: test
       MYSQL_USER: test
       MYSQL_PASSWORD: test
-  
+
   phpmyadmin:
     depends_on:
       - db
@@ -30,41 +29,19 @@ services:
     depends_on:
       - db
       - phpmyadmin
-    image: 'wordpress:6.6-php8.1'
+    build: .
     container_name: 'wordpress'
     ports:
-      - '8000:80'
+      - '80:80'
     environment:
       WORDPRESS_DB_HOST: 'db:3306'
       WORDPRESS_DB_USER: test
       WORDPRESS_DB_PASSWORD: test
       WORDPRESS_DB_NAME: test
-      WORDPRESS_DEBUG: 'true'
-      WORDPRESS_CONFIG_EXTRA: |
-        define('FS_METHOD', 'direct');
     volumes:
       - './public/:/var/www/html'
       - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
-
-  wpcli:
-    depends_on:
-      - db
-      - phpmyadmin
-      - wordpress
-    image: 'wordpress:cli'
-    container_name: 'wpcli'
-    entrypoint: wp
-    environment:
-      WORDPRESS_DB_HOST: 'db:3306'
-      WORDPRESS_DB_USER: test
-      WORDPRESS_DB_PASSWORD: test
-      WORDPRESS_DB_NAME: test
-      WORDPRESS_DEBUG: 'true'
-      WORDPRESS_CONFIG_EXTRA: |
-        define('FS_METHOD', 'direct');
-    volumes:
-      - './public/:/var/www/html'
-      - './uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
+      - '/usr/local/bin/wp:/usr/local/bin/wp'
 
 volumes:
   db_data: {}
