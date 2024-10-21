@@ -4,7 +4,7 @@ O App WP Make fornece uma ajuda na criação de ambiente de desenvolvimento loca
 
 ## Passo 1. Instalar o App WP Make
 
-- WSL 2: Ubuntu 22.04
+WSL 2: Ubuntu 22.04
 
 ```bash
 sudo apt update && sudo apt install git make -y
@@ -20,7 +20,7 @@ cd ~/app-wp-make && rm -fr .git
 
 ## Passo 2. Preparar o ambiente de desenvolvimento local
 
-- WSL 2: Ubuntu 22.04
+WSL 2: Ubuntu 22.04
 
 ```bash
 cd ~/app-wp-make && make windows-wsl-2-docker-ubuntu
@@ -84,7 +84,7 @@ cd ~/app-wp-make && make system-df
 
 ### Instalar o Sage Starter Theme 10
 
-- WSL 2: Ubuntu 22.04
+WSL 2: Ubuntu 22.04
 
 ```bash
 cd ~/app-wp-make && make nvm_node_yarn_wsl && source ~/.bashrc
@@ -104,7 +104,7 @@ make wp_sage_build
 
 ### Instalar o WordPress Multisite
 
-- WSL 2: Ubuntu 22.04
+WSL 2: Ubuntu 22.04
 
 ```bash
 cd ~/app-wp-make && wp core multisite-install --url=localhost --title="Bem-vindo ao WordPress" --admin_user="dev" --admin_password="123" --admin_email="dev@exemplo.com"
