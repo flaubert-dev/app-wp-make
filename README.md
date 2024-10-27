@@ -1,6 +1,6 @@
 # App WP Make
 
-Um passo a passo para ajudar os Devs na criação de um ambiente de desenvolvimento local. Este repositório exige um amplo conhecimento em Linux, Docker e WordPress para conseguir desfrutar do App WP Make com total segurança! Para facilitar, é só seguir o passo a passo:
+Um passo a passo para ajudar os Devs na criação de um ambiente de desenvolvimento local no WSL 2 usando o Ubuntu 22.04 (recém instalado ou formatado). Este repositório exige um amplo conhecimento em Linux, Docker e WordPress para conseguir desfrutar do App WP Make com total segurança! Para facilitar, é só seguir o passo a passo:
 
 Passo 1. [Instalação](#passo-1-instalação) <br>
 Passo 2. [Preparar o ambiente de desenvolvimento local](#passo-2-preparar-o-ambiente-de-desenvolvimento-local) <br>
@@ -32,9 +32,7 @@ cd ~/app-wp-make && rm -fr .git
 
 ## Passo 2. Preparar o ambiente de desenvolvimento local
 
-### WSL 2: Ubuntu 22.04
-
-Se já instalou no Windows o WSL 2 e o Ubuntu 22.04 poderá executar estes comandos no terminal da distribuição:
+Se você acabou de instalar no Windows o WSL 2 e o Ubuntu 22.04 poderá executar estes comandos no terminal da distribuição Ubuntu 22.04:
 
 ```bash
 cd ~/app-wp-make && make windows-wsl-2-docker-ubuntu
