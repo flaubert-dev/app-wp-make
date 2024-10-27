@@ -1,8 +1,4 @@
-SHELL 				:= /bin/bash
-BLUE  				:= \033[1;36m
-YELLOW 				:= \033[1;33m
-LIGHT_GREEN 	:= \033[1;32m
-RESET 				:= \033[0m
+SHELL := /bin/bash
 
 # Begin / init
 allow_scripts:
@@ -80,7 +76,7 @@ windows-wsl-2-ubuntu: allow_scripts start sudo_without_password
 
 # Prepara o ambiente para o WordPress: Imagens, PHP, WP-CLI e Composer
 wp-prepare: allow_scripts wp_cli_install alias_bash_copy alias_bash_wp_cli prepare build php_install composer_install dir_public waiting
-	@echo "$(LIGHT_GREEN)-->$(RESET) Boa!! Agora o ambiente de desenvolvimento local está preparado para iniciar a instalação do $(LIGHT_GREEN)WordPress$(RESET)!"
+	@echo "--> Boa!! Agora o ambiente de desenvolvimento local está preparado para iniciar a instalação do WordPress!"
 
 # Docker / Docker Compose
 build:
@@ -107,8 +103,8 @@ system-df:
 # 	@sudo rm -fr public
 # 	@sudo chmod -R 777 db_data
 # 	@sudo rm -fr db_data
-# 	@echo "$(LIGHT_GREEN)-->$(RESET) Todos os containers, images, volumes, banco de dados, wordpress removidos com $(LIGHT_GREEN)sucesso$(RESET)!"
-# 	@echo "$(LIGHT_GREEN)-->$(RESET) Use o App WP Make com facilidade, confira: https://github.com/flaubert-dev/app-wp-make"
+# 	@echo "--> Todos os containers, images, volumes, banco de dados, wordpress removidos com sucesso!"
+# 	@echo "--> Use o App WP Make com facilidade, confira: https://github.com/flaubert-dev/app-wp-make"
 
 # Debian
 # debian_distrobox:
@@ -200,7 +196,7 @@ wp_sage_build:
 # 	@cd scripts && ./wp_sage_acf_composer.sh
 
 waiting:
-	@echo "$(YELLOW)--> ATENÇÃO$(RESET): O Docker está realizando as configurações necessárias no MariaDB e phpMyAdmin. Aguarde apenas 60 segundos! Por favor, não desligue o computador e nem feche o terminal para não corromper os containers!"
+	@echo "--> ATENÇÃO: O Docker está realizando as configurações necessárias no MariaDB e phpMyAdmin. Aguarde apenas 60 segundos! Por favor, não desligue o computador e nem feche o terminal para não corromper os containers!"
 	@for i in $$(seq 60 -1 1); do \
 		echo -n "$$i "; \
 		sleep 1; \
