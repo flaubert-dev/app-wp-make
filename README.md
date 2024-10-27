@@ -1,18 +1,30 @@
 # App WP Make
 
-O App WP Make fornece uma ajuda na criação de ambiente de desenvolvimento local para Devs especializados em WordPress. Por exemplo, se você tem o WSL 2 com o Ubuntu 22.04 poderá criar um ambiente de desenvolvimento em alguns minutos usando o App WP Make. Porém, este repositório ainda está em fase de testes! No momento (por enquanto), de fato um amplo / vasto conhecimento é realmente necessário para conseguir usar / usufruir / desfrutar do App WP Make com total segurança!
+Um passo a passo para ajudar os Devs na criação de um ambiente de desenvolvimento local. Este repositório exige um amplo conhecimento em Linux, Docker e WordPress para conseguir desfrutar do App WP Make com total segurança! Para facilitar, é só seguir o passo a passo:
 
-## Passo 1. Instalar o App WP Make
+Passo 1. [Instalação](#passo-1-instalação) <br>
+Passo 2. [Preparar o ambiente de desenvolvimento local](#passo-2-preparar-o-ambiente-de-desenvolvimento-local) <br>
+Passo 3. [Instalar o WordPress](#passo-3-instalar-o-wordpress) <br>
+Passo 4. [Entrar no app](#passo-4-login-credenciais) <br>
+Passo 5. [Links de acesso](#passo-5-acessar-o-app)
 
-WSL 2: Ubuntu 22.04
+<hr>
+
+## Passo 1. Instalação
+
+> 1. Instalar git e make
 
 ```bash
 sudo apt update && sudo apt install git make -y
 ```
 
+> 2. Baixar o App WP Make
+
 ```bash
 cd ~ && git clone https://github.com/flaubert-dev/app-wp-make.git
 ```
+
+> 3. Entre no diretório
 
 ```bash
 cd ~/app-wp-make && rm -fr .git
@@ -20,7 +32,9 @@ cd ~/app-wp-make && rm -fr .git
 
 ## Passo 2. Preparar o ambiente de desenvolvimento local
 
-WSL 2: Ubuntu 22.04
+### WSL 2: Ubuntu 22.04
+
+Se já instalou no Windows o WSL 2 e o Ubuntu 22.04 poderá executar estes comandos no terminal da distribuição:
 
 ```bash
 cd ~/app-wp-make && make windows-wsl-2-docker-ubuntu
@@ -44,13 +58,13 @@ cd ~/app-wp-make && wp config set FS_METHOD direct
 cd ~/app-wp-make && wp core install --url=localhost --title="Bem-vindo ao WordPress" --admin_user=dev --admin_password=123 --admin_email=dev@exemplo.com
 ```
 
-## Login (credenciais)
+## Passo 4. Login (credenciais)
 
 - Painel ADM: http://localhost/wp-admin/
 - Username: dev
 - Password: 123
 
-## Acessar o App
+## Passo 5. Acessar o App
 
 - App: http://localhost/
 - phpMyAdmin: http://localhost:10777/
@@ -80,11 +94,9 @@ cd ~/app-wp-make && make down
 cd ~/app-wp-make && make system-df
 ```
 
-## Opcional
+## 100% opcional
 
 ### Instalar o Sage Starter Theme 10
-
-WSL 2: Ubuntu 22.04
 
 ```bash
 cd ~/app-wp-make && make nvm_node_yarn_wsl && source ~/.bashrc
@@ -103,8 +115,6 @@ make wp_sage_build
 ```
 
 ### Instalar o WordPress Multisite
-
-WSL 2: Ubuntu 22.04
 
 ```bash
 cd ~/app-wp-make && wp core multisite-install --url=localhost --title="Bem-vindo ao WordPress" --admin_user="dev" --admin_password="123" --admin_email="dev@exemplo.com"
